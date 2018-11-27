@@ -10,9 +10,21 @@
         <div class="control-group row-fluid form-inline">
             <label for="name" class="control-label col-sm-6 taskLabel"><p class="text-info">Task&nbsp;<i class="icon-star"></i></p></label>
             <div class="col-sm-6">
-                <input type="text" id="task" placeholder="Enter a task..">
+                <input type="text" id="task" placeholder="Enter a task.." data-bind="value: TaskEntered">
             </div>
+            <input type="button" class="btn btn-primary btn-sm" value="Add Task" data-bind="click: checkTask" />
         </div>
     </div>
 </body>
 </html>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/ko")
+@Scripts.Render("~/bundles/taskScripts")
+
+<script>
+    $(function () {
+        var viewModel = new Task.TaskViewModel();
+        ko.applyBindings(viewModel);
+    });
+</script>
