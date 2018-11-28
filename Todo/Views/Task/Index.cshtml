@@ -11,20 +11,35 @@
             <label for="name" class="control-label col-sm-6 taskLabel"><p class="text-info">Task&nbsp;<i class="icon-star"></i></p></label>
             <div class="col-sm-6">
                 <input type="text" id="task" placeholder="Enter a task.." data-bind="value: TaskEntered">
+                <input type="text" class="form-control datepicker">
             </div>
-            <input type="button" class="btn btn-primary btn-sm" value="Add Task" data-bind="click: checkTask" />
+            <input type="button" class="btn btn-primary btn-sm" value="Add Task" data-bind="click: AddTask" />
         </div>
     </div>
+    <table class="table-striped">
+        <tr>
+            <th>Tasks Entered</th>
+        </tr>
+        <tbody data-bind="foreach: Tasks">
+            <tr>
+                <td data-bind="text: Description"></td>
+                <td data-bind="value: DueDate"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/ko")
 @Scripts.Render("~/bundles/taskScripts")
+@Scripts.Render("~/bundles/datepicker")
 
 <script>
     $(function () {
         var viewModel = new Task.TaskViewModel();
         ko.applyBindings(viewModel);
+
+        $('.datepicker').datepicker();
     });
 </script>
